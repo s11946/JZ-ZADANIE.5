@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+  <div>
+	<h:button
+   id="search"
+   value="#{msg.buttonShowPatient}"
+   outcome="showPatient">
+    </h:button>
+      
+      <h:button
+   id="add"
+   type="submit"
+   value="#{msg.buttonAdd}"
+   outcome="addPatient">
+    </h:button>
+      
+      <h:button
+   id="admin"
+   type="submit"
+   value="#{msg.buttonAdmin}"
+   outcome="admin"
+   disabled="true">
+    </h:button>
+      
+  </div>
+</ui:composition>
