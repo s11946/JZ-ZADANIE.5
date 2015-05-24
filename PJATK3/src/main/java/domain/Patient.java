@@ -1,5 +1,8 @@
 package domain;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class Patient {
 	
 	String name;
@@ -12,6 +15,7 @@ public class Patient {
 	String phoneNumber;
 	String dateAdded;
 	
+        @Size (min = 2, max = 50)
 	public String getName() {
 		return name;
 	}
@@ -20,7 +24,7 @@ public class Patient {
 		this.name = name;
 	}
 	
-	
+	@Size (min = 2, max = 50)
 	public String getSurname() {
 		return surname;
 	}
@@ -73,6 +77,7 @@ public class Patient {
 		return phoneNumber;
 	}
 	
+        @Pattern(regexp = "[0-9]{9}")
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}

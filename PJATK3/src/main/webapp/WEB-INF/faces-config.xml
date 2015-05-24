@@ -11,7 +11,11 @@
 			<base-name>com.example.pjatk.messages</base-name>
 			<var>msg</var>
 		</resource-bundle>
-
+                
+                <resource-bundle>
+                    <base-name>com.example.pjatk.errormessages</base-name>
+                    <var>err</var>
+                </resource-bundle>
 		
 
 		<locale-config>

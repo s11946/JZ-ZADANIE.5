@@ -9,6 +9,10 @@ import javax.inject.Named;
 
 import service.PatientRepository;
 import domain.Patient;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 @SessionScoped
 @Named("patientBean")
@@ -43,5 +47,19 @@ public class PatientBean implements Serializable {
 		return "showPatient";
 	}
 
+        public void uniquePin(FacesContext context, UIComponent component, Object value) {
+            
+            String pin = (String) value;
+            
+            for ( Patient patient : db.getList()) {
+                if(patient.getPin().equalsIgnoreCase(pin)) {
+                    FacesMessage message = new FacesMessage(
+                    "Osoba o tym numerze Pesel istnieje już w bazie");
+                    message.setSeverity(FacesMessage.SEVERITY_ERROR);
+                    throw new ValidatorException(message);
+                }
+                    
+            }
+        }
 	
 }

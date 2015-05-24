@@ -11,7 +11,7 @@
                     <h:outputText value="#{patient.dateAdded}" />
                 </p:column>
                 
-                <p:column headerText="#{msg.patientName}">
+                <p:column headerText="#{msg.patientName}" sortBy="#{patient.name}">
                     <h:outputText value="#{patient.name}" />
                 </p:column>
 

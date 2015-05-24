@@ -10,6 +10,7 @@
   		<groupId>javax</groupId>
   		<artifactId>javaee-web-api</artifactId>
   		<version>7.0</version>
+  	 <type>jar</type>
   	</dependency>
   	<dependency>
   		<groupId>org.primefaces</groupId>
