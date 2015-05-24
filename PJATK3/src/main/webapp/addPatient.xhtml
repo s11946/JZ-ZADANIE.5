@@ -8,7 +8,8 @@
 	<ui:define name="content">
 		
             
-            <h:form id="patientForm">			
+            <h:form id="patientForm">
+                
 			<h:panelGrid columns="3" cellpadding="10">
 				<h:outputLabel value="#{msg.patientName}" />
                                 <p:inputText id="name" value="#{patientBean.patient.name}" required="#{true}" 
@@ -19,41 +20,51 @@
                                 
                                 <p:outputLabel value="#{msg.patientSurname}" />
                                 <p:inputText id="surname"  value="#{patientBean.patient.surname}" required="#{true}"
-                                             requiredMessage="#{err.fieldRequired}" validatorMessage="#{err.fieldLength}">
+                                             requiredMessage="#{err.fieldRequired}" validatorMessage="#{err.fieldLength}" >
                                     <f:validateLength minimum="2" maximum="50" />
                                 </p:inputText>
                                 <p:message for="surname" />
                                 
                                 <p:outputLabel value="#{msg.patientPin}" />
 				<p:inputMask  id="pin" value="#{patientBean.patient.pin}" mask = "99999999999"
-                                              validator="#{patientBean.uniquePin}" required="#{true}"
-                                              requiredMessage="#{err.fieldRequired}" >
+                                              validator="#{patientBean.uniquePin}" required="true"
+                                              requiredMessage="#{err.fieldRequired}">
                                     <f:validator validatorId="pinValidator" />
                                 </p:inputMask>
                                 <p:message for="pin" />
                                 
                                 <p:outputLabel for="popup" value="#{msg.patientBirthDate}" />
 				<p:calendar id="popup"  value="#{patientBean.patient.dateBirth}"  />
+                                <p:message for="popup" />
                                 
                                 <p:outputLabel value="#{msg.patientAddress}" />
-				<p:inputText id="address"  value="#{patientBean.patient.address}"  />
+                                <p:inputText id="address"  value="#{patientBean.patient.address}" required="#{true}"
+                                             requiredMessage="#{err.fieldRequired}" />
+                                <p:message for="address" />
                                 
                                 <p:outputLabel value="#{msg.patientWeight}" />
-                                <h:inputText id="weight"  value="#{patientBean.patient.weight}" />
+                                <p:inputText id="weight"  value="#{patientBean.patient.weight}" />
+                                <p:message for="weight" />
                                 
                                 <p:outputLabel value="#{msg.patientHeight}" />
 				<p:inputMask id="height" mask="999"  value="#{patientBean.patient.height}"/>
-
-								<p:outputLabel value="#{msg.patientPhoneNumber}" />
-				<p:inputMask id="phone" mask="(999) 999 999 999"  value="#{patientBean.patient.phoneNumber}" />
+                                <p:message for="height" />
+                                
+				<p:outputLabel value="#{msg.patientPhoneNumber}" />
+				<p:inputMask id="phone" mask="999 999 999"  value="#{patientBean.patient.phoneNumber}" />
+                                <p:message for="phone" />
 				
+                                
 			
-                                <p:commandButton value="Ajax" icon="ui-icon-check" validateClient="true" style="margin-right:10px"/>
-			<p:commandButton value="#{msg.formReset}" type="reset" />
-			<p:commandButton value="#{msg.formOk}" type="submit" action="#{patientBean.addNewPatient()}" />
+                                <p:commandButton value="#{msg.formOk}" type="submit" icon="ui-icon-check" validateClient="true" ajax="false" action="#{patientBean.addNewPatient()}"/>
+        
+			<p:commandButton value="#{msg.formReset}" type="reset" icon="ui-icon-close"/>
                         
-                        <p:growl id="msgs" showDetail="true" />
+                        
+                        
+                       
 				</h:panelGrid>
+                
                         
                        
                         
