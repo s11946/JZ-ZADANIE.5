@@ -47,19 +47,15 @@ public class PatientBean implements Serializable {
 		return "showPatient";
 	}
 
-        public void uniquePin(FacesContext context, UIComponent component, Object value) {
-            
-            String pin = (String) value;
-            
-            for ( Patient patient : db.getList()) {
-                if(patient.getPin().equalsIgnoreCase(pin)) {
-                    FacesMessage message = new FacesMessage(
-                    "Osoba o tym numerze Pesel istnieje już w bazie");
-                    message.setSeverity(FacesMessage.SEVERITY_ERROR);
-                    throw new ValidatorException(message);
-                }
-                    
+        public void uniquePin(FacesContext context, UIComponent component, Object value) {       
+        String pesel = (String)value;
+        
+        for (Patient patient : db.getList()) {           
+            if (patient.getPin().equalsIgnoreCase(pesel)) {
+		throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                    "Ten numer PESEL znajduje się już w bazie", null));
             }
-        }
+        }        
+    }
 	
 }
