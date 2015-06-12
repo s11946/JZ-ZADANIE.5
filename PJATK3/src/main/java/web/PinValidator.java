@@ -37,7 +37,7 @@ public class PinValidator implements Validator {
         
         if (controlDigit != PESEL[10]) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-                    "Twój PESEL nie jest poprawny!", null));
+                    "Tw\u00f3j PESEL nie jest poprawny!", null));
         }             
     }
 }

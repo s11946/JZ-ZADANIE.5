@@ -6,8 +6,11 @@
         xmlns:p="http://primefaces.org/ui" 
 	template="/templates/default.xhtml">
 	<ui:define name="content">
+            <p:button outcome="filter" value="Filtruj" icon="ui-icon-star" style="margin-left: 650px; margin-bottom: 6px;" >
+             
+            </p:button>
             <p:dataTable var="patient" value="#{patientBean.patientData}">
-                 <p:column headerText="#{msg.patientDateAdded}">
+                <p:column headerText="#{msg.patientDateAdded}" sortBy="#{patient.dateAdded}">
                     <h:outputText value="#{patient.dateAdded}" />
                 </p:column>
                 
@@ -15,19 +18,19 @@
                     <h:outputText value="#{patient.name}" />
                 </p:column>
 
-                <p:column headerText="#{msg.patientSurname}">
+                <p:column headerText="#{msg.patientSurname}" sortBy="#{patient.surname}">
                     <h:outputText value="#{patient.surname}" />
                 </p:column>
                 
-                <p:column headerText="#{msg.patientPin}">
+                <p:column headerText="#{msg.patientPin}" sortBy="#{patient.pin}">
                     <h:outputText value="#{patient.pin}" />
                 </p:column>
                 
-                <p:column headerText="#{msg.patientWeight}">
+                <p:column headerText="#{msg.patientWeight}" sortBy="#{patient.weight}">
                     <h:outputText value="#{patient.weight}" />
                 </p:column>
                 
-                <p:column headerText="#{msg.patientHeight}">
+                <p:column headerText="#{msg.patientHeight}" sortBy="#{patient.height}">
                     <h:outputText value="#{patient.height}" />
                 </p:column> 
             </p:dataTable>
