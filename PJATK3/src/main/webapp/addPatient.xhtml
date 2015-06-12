@@ -33,9 +33,12 @@
                                 </p:inputMask>
                                 <p:message for="pin" />
                                 
-                                <p:outputLabel for="popup" value="#{msg.patientBirthDate}" />
-				<p:calendar id="popup"  value="#{patientBean.patient.dateBirth}"  />
-                                <p:message for="popup" />
+                                <p:outputLabel value="#{msg.patientBirthDate}" />
+                                <p:calendar id="birthDate"  value="#{patientBean.patient.dateBirth}" required="#{true}"
+                                            requiredMessage="#{err.fieldRequired}">
+                                <f:validator validatorId="dateValidator" />
+                                </p:calendar>
+                                <p:message for="birthDate" />
                                 
                                 <p:outputLabel value="#{msg.patientAddress}" />
                                 <p:inputText id="address"  value="#{patientBean.patient.address}" required="#{true}"
