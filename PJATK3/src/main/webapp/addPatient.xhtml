@@ -9,41 +9,48 @@
 		
             
             <h:form id="patientForm">
+                <f:event type="postValidate" listener="#{patientBean.validatePinToDate}" />
                 
 			<h:panelGrid columns="3" cellpadding="10">
 				<h:outputLabel value="#{msg.patientName}" />
                                 <p:inputText id="name" value="#{patientBean.patient.name}" required="#{true}" 
                                              requiredMessage="#{err.fieldRequired}" validatorMessage="#{err.fieldLength}">
                                     <f:validateLength minimum="2" maximum="50" />
+                                    <p:ajax update="msgName" event="keyup" />
                                 </p:inputText>                               
-                                    <p:message for="name" />
+                                <p:message for="name" id="msgName" />
                                 
                                 <p:outputLabel value="#{msg.patientSurname}" />
                                 <p:inputText id="surname"  value="#{patientBean.patient.surname}" required="#{true}"
                                              requiredMessage="#{err.fieldRequired}" validatorMessage="#{err.fieldLength}" >
                                     <f:validateLength minimum="2" maximum="50" />
+                                    <p:ajax update="msgSurname" event="keyup" />
                                 </p:inputText>
-                                <p:message for="surname" />
+                                <p:message for="surname" id="msgSurname" />
                                 
                                 <p:outputLabel value="#{msg.patientPin}" />
 				<p:inputMask  id="pin" value="#{patientBean.patient.pin}" mask = "99999999999"
                                               validator="#{patientBean.uniquePin}" required="true"
                                               requiredMessage="#{err.fieldRequired}">
                                     <f:validator validatorId="pinValidator" />
+                                    <p:ajax update="msgPin" event="keyup" />
                                 </p:inputMask>
-                                <p:message for="pin" />
+                                <p:message for="pin" id="msgPin" />
                                 
                                 <p:outputLabel value="#{msg.patientBirthDate}" />
                                 <p:calendar id="birthDate"  value="#{patientBean.patient.dateBirth}" required="#{true}"
                                             requiredMessage="#{err.fieldRequired}">
                                 <f:validator validatorId="dateValidator" />
+                                <p:ajax update="msgBirthDate" event="dateSelect" />
                                 </p:calendar>
-                                <p:message for="birthDate" />
+                                <p:message for="birthDate" id="msgBirthDate" />
                                 
                                 <p:outputLabel value="#{msg.patientAddress}" />
                                 <p:inputText id="address"  value="#{patientBean.patient.address}" required="#{true}"
-                                             requiredMessage="#{err.fieldRequired}" />
-                                <p:message for="address" />
+                                             requiredMessage="#{err.fieldRequired}">
+                                    <p:ajax update="msgAddress" event="keyup" />
+                                </p:inputText>
+                                <p:message for="address" id="msgAddress" />
                                 
                                 <p:outputLabel value="#{msg.patientWeight}" />
                                 <p:inputText id="weight"  value="#{patientBean.patient.weight}" />
@@ -59,7 +66,7 @@
 				
                                 
 			
-                                <p:commandButton value="#{msg.formOk}" type="submit" icon="ui-icon-check" validateClient="true" ajax="false" action="#{patientBean.addNewPatient()}"/>
+                        <p:commandButton value="#{msg.formOk}" type="submit" icon="ui-icon-check" validateClient="true" ajax="false" action="#{patientBean.addNewPatient()}"/>
         
 			<p:commandButton value="#{msg.formReset}" type="reset" icon="ui-icon-close"/>
                         

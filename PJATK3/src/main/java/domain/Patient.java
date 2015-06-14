@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Date;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -8,7 +9,7 @@ public class Patient {
 	String name;
 	String surname;
 	String pin;
-	String dateBirth;
+	Date dateBirth;
 	String address;
 	String weight;
 	String height;
@@ -41,11 +42,11 @@ public class Patient {
 		this.pin = pin;
 	}
 	
-	public String getDateBirth() {
+	public Date getDateBirth() {
 		return dateBirth;
 	}
 	
-	public void setDateBirth(String dateBirth) {
+	public void setDateBirth(Date dateBirth) {
 		this.dateBirth = dateBirth;
 	}
 	

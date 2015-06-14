@@ -74,29 +74,25 @@ public class PatientBean implements Serializable {
     }
         
         public void validatePinToDate(ComponentSystemEvent event) {
+            try {
             UIForm form = (UIForm) event.getComponent();
-            UIInput pin = (UIInput) form.findComponent("pin");
-            UIInput dateBirth = (UIInput) form.findComponent("dateBirth");
+            UIInput UIpin = (UIInput) form.findComponent("pin");
+            UIInput UIdateBirth = (UIInput) form.findComponent("dateBirth");
             
+            String dateBirth = UIdateBirth.getValue().toString().substring(27, 29);
+            String pin = UIpin.getValue().toString().substring(0, 2);
             
-            if (pin.getValue() != null && dateBirth.getValue() != null
-				&& pin.getValue().toString().length() >= 2) {
-                String DigitsOfPin = pin.getValue().toString().substring(0 ,2);
-                Calendar cal = Calendar.getInstance();
-			cal.setTime(((Date) dateBirth.getValue()));
-                String DigitsOfDateBirth = ((Integer) cal.get(Calendar.YEAR))
-					.toString().substring(27 ,29);
-                
-            
-                
-                if (!DigitsOfPin.equals(DigitsOfDateBirth)) {
-                    FacesContext context = FacesContext.getCurrentInstance();
-                    context.addMessage(form.getClientId(), new FacesMessage(
-                    "PESEL nie jest zgodny z dat¹ urodzenia"));
-                    context.renderResponse();
-                }
+            if (!dateBirth.equals(pin)) {
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(form.getClientId(), new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                "Data urodzenia nie jest zgodna z podanym numerem PESEL.", null));
+                context.renderResponse();
             }
         }
+        catch (NullPointerException exception) {
+            
+        }
+    }
        
 	
 }
